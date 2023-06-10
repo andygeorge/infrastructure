@@ -21,3 +21,21 @@
       ansible.builtin.debug:
         msg: "{{ install_output.results }}"
       when: install_output.changed
+
+    - name: "Install flatpak packages"
+      community.general.flatpak:
+        name: "{{ flatpak_packages }}"
+        state: "present"
+      register: reg_flatpak_packages
+
+    - name: "Update installed flatpaks"
+      ansible.builtin.command: "flatpak update --noninteractive"
+      register: reg_flatpak_update
+      ignore_errors: true
+
+    - name: "Flatpak output"
+      ansible.builtin.debug:
+        msg: "{{ item.stdout }}"
+      loop:
+        - "{{ reg_flatpak_packages }}"
+        - "{{ reg_flatpak_update }}"
