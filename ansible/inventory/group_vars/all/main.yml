@@ -1,0 +1,8 @@
+---
+dnf_packages:
+  - "tilix"
+  - "tmate"
+  - "ripgrep"
+  - "fzf"
+
+flatpak_packages: []

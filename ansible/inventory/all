@@ -1,0 +1,6 @@
+[wsl_group]
+localhost
+
+[wsl_group:vars]
+ansible_user=andygeorge
+ansible_connection=local

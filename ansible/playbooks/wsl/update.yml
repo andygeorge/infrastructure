@@ -1,0 +1,23 @@
+---
+- name: "Update/setup WSL hosts"
+  hosts: "wsl_group"
+  become: true
+  gather_facts: true
+
+  vars:
+
+  roles:
+
+  pre_tasks:
+
+  tasks:
+    - name: "Install dnf packages"
+      ansible.builtin.dnf:
+        name: "{{ dnf_packages }}"
+        state: "present"
+      register: "install_output"
+
+    - name: "Show install_output"
+      ansible.builtin.debug:
+        msg: "{{ install_output.results }}"
+      when: install_output.changed
